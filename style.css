@@ -1,0 +1,367 @@
+:root {
+    --bg-light: #fffcf2; /* Pastel background */
+    --sunflower-yellow: #ffda47;
+    --sunflower-orange: #ff9800;
+    --soft-brown: #5c4033;
+    --text-primary: #3b2f2f;
+    --text-light: #8c7b74;
+    --card-bg: rgba(255, 255, 255, 0.85);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    cursor: none; /* Hide default cursor to use custom glow */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+h1, h2, .typing-text, .signature {
+    font-family: 'Dancing Script', cursive;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--soft-brown);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Cursor Glow */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, var(--sunflower-yellow), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px 10px rgba(255, 218, 71, 0.5);
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s, box-shadow 0.2s;
+}
+.cursor-glow.hovering {
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 30px 15px rgba(255, 152, 0, 0.6);
+}
+
+/* Music Button */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    color: var(--soft-brown);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+.music-btn:hover {
+    transform: scale(1.1);
+}
+
+/* 1. Landing Section */
+.landing {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 246, 219, 0.9), rgba(255, 226, 179, 0.9));
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 10;
+    padding: 2rem;
+}
+
+.typing-text {
+    font-size: 3rem;
+    color: var(--soft-brown);
+    margin-bottom: 2rem;
+    min-height: 80px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.primary-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(45deg, var(--sunflower-yellow), var(--sunflower-orange));
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 8px 15px rgba(255, 152, 0, 0.3);
+    transition: all 0.3s ease;
+}
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(255, 152, 0, 0.4);
+}
+.secondary-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--soft-brown);
+    border: 2px solid var(--soft-brown);
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.secondary-btn:hover {
+    background: var(--soft-brown);
+    color: white;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 152, 0, 0.5); }
+    100% { transform: scale(1); }
+}
+
+/* Scroll Fade Animation */
+.hidden-elem {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.visible-elem {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 2. Apology Section */
+.apology {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+.card {
+    background: var(--card-bg);
+    max-width: 800px;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(92, 64, 51, 0.08);
+    backdrop-filter: blur(10px);
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.card p {
+    margin-bottom: 1.5rem;
+}
+.signature {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+/* 3. Memory Section */
+.memory {
+    padding: 5rem 2rem;
+    background: linear-gradient(to bottom, transparent, rgba(255, 218, 71, 0.1), transparent);
+}
+.memory-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.image-frame {
+    position: relative;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 218, 71, 0.4);
+    transition: all 0.4s ease;
+    border: 5px solid white;
+    aspect-ratio: 1 / 1;
+}
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.image-frame:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 152, 0, 0.3);
+}
+.image-frame:hover img {
+    transform: scale(1.05);
+}
+
+/* 4. Promise Section */
+.promise {
+    padding: 5rem 2rem;
+}
+.promise-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+.promise-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+.promise-item:hover {
+    transform: translateY(-5px);
+}
+.promise-item i {
+    font-size: 2.5rem;
+    color: var(--sunflower-orange);
+    margin-bottom: 1rem;
+}
+.promise-item p {
+    font-weight: 500;
+}
+
+/* 5. Interactive Section */
+.interactive {
+    padding: 6rem 2rem;
+    text-align: center;
+}
+.interactive-buttons {
+    margin-top: 2rem;
+}
+#decision-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.final-message {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-family: 'Dancing Script', cursive;
+    color: var(--sunflower-orange);
+    min-height: 50px;
+}
+
+/* Giant Animated Text */
+.big-love {
+    padding: 3rem 2rem;
+    text-align: center;
+    overflow: hidden;
+}
+.giant-text {
+    font-size: 8vw;
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(45deg, var(--sunflower-orange), var(--sunflower-yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 5px 15px rgba(255, 152, 0, 0.4));
+    animation: gentle-heartbeat 2.5s infinite;
+}
+@media (max-width: 768px) {
+    .giant-text { font-size: 15vw; }
+}
+@keyframes gentle-heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.05); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Floating Petals Animation Overlay */
+#petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -20px;
+    background: #FFD700;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px 0px 15px 0px;
+    opacity: 0.6;
+    animation: drift 10s linear infinite;
+}
+
+@keyframes drift {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Mini Popup Text */
+.mini-popup {
+    position: fixed;
+    font-family: 'Dancing Script', cursive;
+    color: var(--sunflower-orange);
+    font-size: 1.5rem;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 9998;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    animation: popup-float 2.5s ease-out forwards;
+}
+@keyframes popup-float {
+    0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+    20% { transform: translate(-50%, -20px) scale(1.2); opacity: 1; }
+    80% { transform: translate(-50%, -60px) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -100px) scale(0.8); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .typing-text { font-size: 2rem; }
+    h2 { font-size: 2rem; }
+    .card { padding: 2rem; }
+    /* Hide custom cursor on mobile due to touch */
+    .cursor-glow { display: none; }
+    * { cursor: auto; }
+}
